@@ -38,8 +38,25 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'restaurant',
+    'LittleLemonAPI',
     'rest_framework',
+    'rest_framework.authtoken',
+     'djoser',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # Cette ligne permet d'utiliser les jetons (Tokens)
+        'rest_framework.authentication.TokenAuthentication',
+        # Cette ligne permet de rester connecté via l'interface d'admin Django
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        # Par défaut, toute l'API demande d'être authentifié
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+DJOSER={"USER_ID_FIELD":"username"}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
